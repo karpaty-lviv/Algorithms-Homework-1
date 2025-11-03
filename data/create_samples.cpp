@@ -39,7 +39,7 @@ bool createSampleFiles(const std::string &original_filename,
     {
         for (size_t i = 0; i < output_files.size(); ++i)
         {
-            if (line_count < sample_sizes[i])
+            if (line_count <= sample_sizes[i])
             {
                 output_files[i] << line << '\n';
             }
@@ -70,7 +70,7 @@ int main()
         "students_100.csv",
         "students_1000.csv",
         "students_10000.csv"};
-    std::vector<int> sizes = {100, 1000, 10000};
+    std::vector<int> sizes = {100, 1000, 10001};
     createSampleFiles(original_file, filenames, sizes);
     return 0;
 }

@@ -67,7 +67,28 @@ std::vector<Student> CSVParser::load(const std::string &filename)
 
 void CSVParser::save(const std::string &filename, const std::vector<Student> &students)
 {
-    // ...
-    // твоя логіка запису
-    // ...
+    std::ofstream f(filename);
+    if (!f.is_open())
+    {
+        std::cerr << "Cannot open file" << filename << std::endl;
+        return;
+    }
+
+    // file header
+    f << "m_name,m_surname,m_email,m_birth_year,m_birth_month,m_birth_day,m_group,m_rating,m_phone_number\n";
+
+    // write every student
+    for (const auto &s : students)
+    {
+        f << s.m_name << ","
+          << s.m_surname << ","
+          << s.m_email << ","
+          << s.m_birth_year << ","
+          << s.m_birth_month << ","
+          << s.m_birth_day << ","
+          << s.m_group << ","
+          << s.m_rating << ","
+          << s.m_phone_number << "\n";
+    }
+    f.close();
 }
